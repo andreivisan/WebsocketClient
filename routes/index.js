@@ -31,7 +31,8 @@ router.get('/get-image', function(req, res) {
     json: true
   },
   function(error, response, body) {
-    console.log("Response: %s", JSON.stringify(response));
+    console.log("Response received ");
+    res.render('index', { title: 'Express', image:response.body});
   });
 
 });
