@@ -4,6 +4,8 @@ var router = express.Router();
 var WebSocket = require('ws');
 var wsClient = require('../ws-client/index')
 
+var request = require("request");
+
 /* GET home page. */
 router.get('/', function(req, res) {
   //wsClient.createWebSocketClient();
@@ -15,8 +17,21 @@ router.get('/', function(req, res) {
   });
 
   ws.on('message', function(data, flags) {
-    console.log("Socket response arrived!");
+    console.log("Socket response arrived! ");
     res.render('index', { title: 'Express', image:data});
+  });
+
+});
+
+router.get('/get-image', function(req, res) {
+  var url = "http://192.168.9.118:8080/get-image"
+
+  request({
+    url: url,
+    json: true
+  },
+  function(error, response, body) {
+    console.log("Response: %s", JSON.stringify(response));
   });
 
 });
