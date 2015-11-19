@@ -10,15 +10,25 @@ var request = require("request");
 router.get('/', function(req, res) {
   //wsClient.createWebSocketClient();
 
-  var ws = new WebSocket('ws://192.168.2.26:8080/stream');
+  // var ws = new WebSocket('ws://192.168.2.26:8080/stream');
+  //
+  // ws.on('open', function open() {
+  //   ws.send('test');
+  // });
+  //
+  // ws.on('message', function(data, flags) {
+  //   console.log("Socket response arrived! ");
+  //   res.render('index', { title: 'Express', image:data});
+  // });
 
-  ws.on('open', function open() {
-    ws.send('test');
-  });
+  var url = "http://192.168.9.118:8080/get-media"
 
-  ws.on('message', function(data, flags) {
-    console.log("Socket response arrived! ");
-    res.render('index', { title: 'Express', image:data});
+  request({
+    url: url,
+    json: true
+  },
+  function(error, response, body) {
+    console.log("Response received %s", JSON.stringify(body));
   });
 
 });
