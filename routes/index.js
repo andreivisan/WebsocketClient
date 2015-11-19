@@ -28,7 +28,8 @@ router.get('/', function(req, res) {
     json: true
   },
   function(error, response, body) {
-    console.log("Response received %s", JSON.stringify(body));
+    console.log("Response received %s", JSON.stringify(response.body.files));
+    res.render('index', {files: response.body.files});
   });
 
 });
