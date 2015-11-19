@@ -8,20 +8,7 @@ var request = require("request");
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  //wsClient.createWebSocketClient();
-
-  // var ws = new WebSocket('ws://192.168.2.26:8080/stream');
-  //
-  // ws.on('open', function open() {
-  //   ws.send('test');
-  // });
-  //
-  // ws.on('message', function(data, flags) {
-  //   console.log("Socket response arrived! ");
-  //   res.render('index', { title: 'Express', image:data});
-  // });
-
-  var url = "http://192.168.9.118:8080/get-media"
+  var url = "http://192.168.2.40:8080/get-media"
 
   request({
     url: url,
@@ -35,7 +22,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/get-image', function(req, res) {
-  var url = "http://192.168.9.118:8080/get-image"
+  var url = "http://192.168.2.40:8080/get-image"
 
   request({
     url: url,
@@ -51,7 +38,7 @@ router.get('/get-image', function(req, res) {
 router.get('/show-file', function(req, res) {
   console.log("Request: %s | %s", req.query.fileName, req.query.extension);
   if(req.query.extension.indexOf(".jpg") > -1) {
-    var url = "http://192.168.9.118:8080/get-image?name=" + req.query.fileName;
+    var url = "http://192.168.2.40:8080/get-image?name=" + req.query.fileName;
     console.log("URL: %s", url);
 
     request({
@@ -63,7 +50,7 @@ router.get('/show-file', function(req, res) {
       res.render('mediaPlay', { image:response.body, video:null});
     });
   } else {
-    var url = "http://192.168.9.118:8080/get-video?name=" + req.query.fileName;
+    var url = "http://192.168.2.40:8080/get-video?name=" + req.query.fileName;
     console.log("URL: %s", url);
 
     request({
