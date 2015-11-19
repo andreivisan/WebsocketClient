@@ -48,4 +48,21 @@ router.get('/get-image', function(req, res) {
 
 });
 
+router.get('/show-file', function(req, res) {
+  console.log("Request: %s | %s", req.query.fileName, req.query.extension);
+  if(req.query.extension.indexOf(".jpg") > -1) {
+    var url = "http://192.168.9.118:8080/get-image?name=" + req.query.fileName;
+    console.log("URL: %s", url);
+
+    request({
+      url: url,
+      json: true
+    },
+    function(error, response, body) {
+      console.log("Response received ");
+      res.render('mediaPlay', { image:response.body});
+    });
+  }
+});
+
 module.exports = router;

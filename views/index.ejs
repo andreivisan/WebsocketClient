@@ -8,7 +8,11 @@
 
     <ul>
       <% files.forEach( function(file) { %>
-          <li> <%= file.fileName %> </li>
+          <li>
+            <a href="/show-file?fileName=<%= file.fileName %>&extension=<%= file.extension %>">
+              <%= file.fileName %>
+            </a>
+          </li>
       <% }) %>
       <li>
     </ul>
