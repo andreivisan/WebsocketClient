@@ -60,7 +60,19 @@ router.get('/show-file', function(req, res) {
     },
     function(error, response, body) {
       console.log("Response received ");
-      res.render('mediaPlay', { image:response.body});
+      res.render('mediaPlay', { image:response.body, video:null});
+    });
+  } else {
+    var url = "http://192.168.9.118:8080/get-video?name=" + req.query.fileName;
+    console.log("URL: %s", url);
+
+    request({
+      url: url,
+      json: true
+    },
+    function(error, response, body) {
+      console.log("Response received ");
+      res.render('mediaPlay', { image:null, video:response.body});
     });
   }
 });

@@ -12,5 +12,13 @@
       </div>
     <% } %>
 
+    <% if(video) { %>
+      <div>
+        <video width="356" height="200" controls >
+          <source src="<%= video %>" type="video/mp4" />
+        </video>
+      </div>
+    <% } %>
+
   </body>
 </html>
